@@ -24,6 +24,13 @@ def index():
             strat.append("v")
 
         # TODO add return info about stock here
+        stocksMapping = {
+        "e" : ["APPL","ADBE","NSRGY"],
+        "g" : ["NFLX","FB","NVDA"], 
+        "i" : ["VTI","IXUS","ILTB"],
+        "q" : ["LOW","ROST","TJX"],
+        "v" : ["WMT","BAC","CLF"],
+        };
 
 
         # things to return to the html, it can be any type
