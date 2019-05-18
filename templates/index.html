@@ -3,6 +3,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+ 
+$(document).ready(function() { 
+ 
+   $('#bt_submit').attr("disabled",true);
+ 
+   $('.cbox').change(function() {
+      $('#bt_submit').attr('disabled', $('.cbox:checked').length == 0);
+   });
+ 
+});
+ 
+</script>
 <head>
     <meta charset="UTF-8">
     <title>CMPE285 Project</title>
@@ -21,13 +34,13 @@
                         </label>
                         <input type="number" class="form-control" id="InputDollar" name="input_dollar" step="0.01"
                                min="5000" value="5000"/>
-                        <input type="checkbox" name="e" value="e">Ethical Investing<br>
-                        <input type="checkbox" name="g" value="g">Growth Investing<br>
-                        <input type="checkbox" name="i" value="i">Index Investing<br>
-                        <input type="checkbox" name="q" value="q">Quality Investing<br>
-                        <input type="checkbox" name="v" value="v">Value Investing<br>
+                        <input type="checkbox" name="e" value="e" class="cbox">Ethical Investing<br>
+                        <input type="checkbox" name="g" value="g" class="cbox">Growth Investing<br>
+                        <input type="checkbox" name="i" value="i" class="cbox">Index Investing<br>
+                        <input type="checkbox" name="q" value="q" class="cbox">Quality Investing<br>
+                        <input type="checkbox" name="v" value="v" class="cbox">Value Investing<br>
                     </div>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" id="bt_submit">
                         Submit
                     </button>
                 </form>

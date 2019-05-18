@@ -12,11 +12,11 @@ def index():
         input_dollar = float(invest_form['input_dollar'])
         # print("user spending ${} with strat {}".format(input_dollar, strat))
         stocksMapping = {
-        "e" : ["APPL","ADBE","NSRGY"],
-        "g" : ["NFLX","FB","NVDA"], 
-        "i" : ["VTI","IXUS","ILTB"],
-        "q" : ["LOW","ROST","TJX"],
-        "v" : ["WMT","BAC","CLF"]
+        "e" : {"Ethical" : ["APPL","ADBE","NSRGY"]},
+        "g" : {"Growth" : ["NFLX","FB","NVDA"]}, 
+        "i" : {"Index" : ["VTI","IXUS","ILTB"]},
+        "q" : {"Quality" : ["LOW","ROST","TJX"]},
+        "v" : {"Value" : ["WMT","BAC","CLF"]}
         }
         strat = []
         if request.form.get("e"):
@@ -37,7 +37,7 @@ def index():
         for i in strat:
             obj = {
             "money":input_dollar, 
-            "strat": strat
+            strat
             }
 
         # render index with obj
