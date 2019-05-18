@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request
+from datetime import datetime, timedelta
+import requests
 app = Flask(__name__)
 
 
@@ -11,42 +13,59 @@ def index():
         invest_form = request.form.to_dict()
         input_dollar = float(invest_form['input_dollar'])
         # print("user spending ${} with strat {}".format(input_dollar, strat))
-        stocksMapping = {
-        "e" : {"Ethical" : ["APPL","ADBE","NSRGY"]},
-        "g" : {"Growth" : ["NFLX","FB","NVDA"]}, 
-        "i" : {"Index" : ["VTI","IXUS","ILTB"]},
-        "q" : {"Quality" : ["LOW","ROST","TJX"]},
-        "v" : {"Value" : ["WMT","BAC","CLF"]}
-        }
         strat = []
         if request.form.get("e"):
-            strat.append(stocksMapping["e"])
+            strat.append("e")
         if request.form.get("g"):
-            strat.append(stocksMapping["g"])
+            strat.append("g")
         if request.form.get("i"):
-            strat.append(stocksMapping["i"])
+            strat.append("i")
         if request.form.get("q"):
-            strat.append(stocksMapping["q"])
+            strat.append("q")
         if request.form.get("v"):
-            strat.append(stocksMapping["v"])
+            strat.append("v")
 
         # TODO add return info about stock here
+        stocksMapping = {
+            "e" : ["APPL","ADBE","NSRGY"],
+            "g" : ["NFLX","FB","NVDA"],
+            "i" : ["VTI","IXUS","ILTB"],
+            "q" : ["LOW","ROST","TJX"],
+            "v" : ["WMT","BAC","CLF"],
+        }
 
-
-        # things to return to the html, it can be any type
+        seven_days_ago = datetime.now() - timedelta(days=7)
+        stocks = []
+        hist = []
         for i in strat:
-            obj = {
-            "money":input_dollar, 
-            strat
-            }
+            stocks += stocksMapping[i]
+
+        api_token = "b7676g5wQjdv1EdR9nEnrHLoMrbqNTafYIvomuE9Hn3InTSsYwrDTLbzBdDf"
+        hist_api_str = "https://www.worldtradingdata.com/api/v1/history?symbol={}&sort=newest&date_from={}&api_token={}"
+        price_api_str = "https://www.worldtradingdata.com/api/v1/stock?symbol={}&api_token={}"
+
+        for stock in stocks:
+            request_str = hist_api_str.format(stock,seven_days_ago.date(),api_token)
+            try:
+                r = requests.get(request_str)
+            except requests.exceptions.RequestException as e:
+                print("Network error! Please the run program with proper Internet connecetion.")
+            pass
+
+            packet = r.json()
+            hist.append(packet)
+
+
+
+
+
+
+            print(packet["history"])
+        # things to return to the html, it can be any type
+        obj = {"money":input_dollar, "strat": strat}
 
         # render index with obj
         return render_template("index.html", obj=obj)
 
 
-@app.route("/portfolio", methods=['POST', 'GET'])
-def portfolioChart():
-	return render_template('PortfolioChart.html')
-
-
-app.run(debug=False)
+app.run(debug=True, port=80)
