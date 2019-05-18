@@ -3,114 +3,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript">
- 
-$(document).ready(function() { 
- 
-   $('#bt_submit').attr("disabled",true);
- 
-   $('.cbox').change(function() {
-      $('#bt_submit').attr('disabled', $('.cbox:checked').length == 0);
-   });
- 
-});
- 
-</script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
 
 <head>
     <meta charset="UTF-8">
     <title>CMPE285 Project</title>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Stock', 'Percentage'],
-          ['AAPL',     55],
-          ['ADBE',      35],
-          ['NSRGY',    10]
-        ]);
-        var options = {
-          title: 'How the money divide by Ethical Investing'
-        };
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        chart.draw(data, options);
-      }
-    </script>
-        <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Stock', 'Percentage'],
-          ['NFLX',     60],
-          ['FB',      20],
-          ['NVDA',    20]
-        ]);
-        var options = {
-          title: 'How the money divide by Growth Investing'
-        };
-        var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
-        chart.draw(data, options);
-      }
-    </script>
-        <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Stock', 'Percentage'],
-          ['VTI',     30],
-          ['IXUS',      35],
-          ['ILTB',    35]
-        ]);
-        var options = {
-          title: 'How the money divide by Index Investing'
-        };
-        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
-        chart.draw(data, options);
-      }
-    </script>
-        <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Stock', 'Percentage'],
-          ['LOW',     45],
-          ['ROST',      45],
-          ['TJX',    10]
-        ]);
-        var options = {
-          title: 'How the money divide by Quality Investin'
-        };
-        var chart = new google.visualization.PieChart(document.getElementById('piechart3'));
-        chart.draw(data, options);
-      }
-    </script>
-        <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Stock', 'Percentage'],
-          ['WMT',     25],
-          ['BAC',      35],
-          ['CLF',    40]
-        ]);
-        var options = {
-          title: 'How the money divide Value Investing'
-        };
-        var chart = new google.visualization.PieChart(document.getElementById('piechart4'));
-        chart.draw(data, options);
-      }
-    </script>
 </head>
-    
 <body>
     <div class="container-fluid">
         <div class="row">
@@ -125,27 +23,40 @@ $(document).ready(function() {
                         </label>
                         <input type="number" class="form-control" id="InputDollar" name="input_dollar" step="0.01"
                                min="5000" value="5000"/>
-                        <input type="checkbox" name="e" value="e" class="cbox">Ethical Investing<br>
-                        <input type="checkbox" name="g" value="g" class="cbox">Growth Investing<br>
-                        <input type="checkbox" name="i" value="i" class="cbox">Index Investing<br>
-                        <input type="checkbox" name="q" value="q" class="cbox">Quality Investing<br>
-                        <input type="checkbox" name="v" value="v" class="cbox">Value Investing<br>
+                        <input type="checkbox" name="e" value="e">E<br>
+                        <input type="checkbox" name="g" value="g">G<br>
+                        <input type="checkbox" name="i" value="i">I<br>
+                        <input type="checkbox" name="q" value="q">Q<br>
+                        <input type="checkbox" name="v" value="v">V<br>
                     </div>
-                    <button type="submit" class="btn btn-primary" id="bt_submit">
+                    <button type="submit" class="btn btn-primary">
                         Submit
                     </button>
                 </form>
-        <div id="piechart" style="width: 600px; height: 300px;"></div>
-        <div id="piechart1" style="width: 600px; height: 300px;"></div>
-        <div id="piechart2" style="width: 600px; height: 300px;"></div>
-        <div id="piechart3" style="width: 600px; height: 300px;"></div>
-        <div id="piechart4" style="width: 600px; height: 300px;"></div>
 
             </div>
         </div>
         <!-- render the charts based on the returned obj-->
         {% if obj is defined %}
-        <p>{{obj}}<p/>
+        <!--<p>{{obj}}<p/>-->
+        <div id="piechart" style="width: 600px; height: 300px;"></div>
+        <script type="text/javascript">
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Stock', 'Percentage'],
+                    {% for key,value in dist.items() %}
+                    ['{{key}}', {{value}}]{{ "," if not loop.last }}
+                    {% endfor %}
+                ]);
+                var options = {
+                    title: 'How the money divide by Ethical Investing'
+                };
+                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                chart.draw(data, options);
+            }
+        </script>
         {% else %}
         {% endif %}
     </div>
