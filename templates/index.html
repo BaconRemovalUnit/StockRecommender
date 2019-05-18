@@ -2,7 +2,6 @@
 <html lang="en">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<<<<<<< HEAD
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
  
@@ -17,34 +16,96 @@ $(document).ready(function() {
 });
  
 </script>
-=======
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    
->>>>>>> a4cd98405a5ad53d2ce3d66d5197fba0fbfabd27
+
 <head>
     <meta charset="UTF-8">
     <title>CMPE285 Project</title>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
-
       function drawChart() {
-
         var data = google.visualization.arrayToDataTable([
           ['Stock', 'Percentage'],
-          ['AAPL',     11],
-          ['ADBE',      2],
-          ['NSRGY',    7]
+          ['AAPL',     55],
+          ['ADBE',      35],
+          ['NSRGY',    10]
         ]);
-
         var options = {
-          title: 'How the money divide'
+          title: 'How the money divide by Ethical Investing'
         };
-
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
+        chart.draw(data, options);
+      }
+    </script>
+        <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Stock', 'Percentage'],
+          ['NFLX',     60],
+          ['FB',      20],
+          ['NVDA',    20]
+        ]);
+        var options = {
+          title: 'How the money divide by Growth Investing'
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+        chart.draw(data, options);
+      }
+    </script>
+        <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Stock', 'Percentage'],
+          ['VTI',     30],
+          ['IXUS',      35],
+          ['ILTB',    35]
+        ]);
+        var options = {
+          title: 'How the money divide by Index Investing'
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+        chart.draw(data, options);
+      }
+    </script>
+        <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Stock', 'Percentage'],
+          ['LOW',     45],
+          ['ROST',      45],
+          ['TJX',    10]
+        ]);
+        var options = {
+          title: 'How the money divide by Quality Investin'
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart3'));
+        chart.draw(data, options);
+      }
+    </script>
+        <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Stock', 'Percentage'],
+          ['WMT',     25],
+          ['BAC',      35],
+          ['CLF',    40]
+        ]);
+        var options = {
+          title: 'How the money divide Value Investing'
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart4'));
         chart.draw(data, options);
       }
     </script>
@@ -74,7 +135,11 @@ $(document).ready(function() {
                         Submit
                     </button>
                 </form>
-        <div id="piechart" style="width: 900px; height: 500px;"></div>
+        <div id="piechart" style="width: 600px; height: 300px;"></div>
+        <div id="piechart1" style="width: 600px; height: 300px;"></div>
+        <div id="piechart2" style="width: 600px; height: 300px;"></div>
+        <div id="piechart3" style="width: 600px; height: 300px;"></div>
+        <div id="piechart4" style="width: 600px; height: 300px;"></div>
 
             </div>
         </div>
