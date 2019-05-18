@@ -40,4 +40,9 @@ def index():
         return render_template("index.html", obj=obj)
 
 
-app.run(debug=True, port=80)
+@app.route("/portfolio", methods=['POST', 'GET'])
+def portfolioChart():
+	return render_template('PortfolioChart.html')
+
+
+app.run(debug=False)
