@@ -2,6 +2,7 @@
 <html lang="en">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<<<<<<< HEAD
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
  
@@ -16,10 +17,39 @@ $(document).ready(function() {
 });
  
 </script>
+=======
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    
+>>>>>>> a4cd98405a5ad53d2ce3d66d5197fba0fbfabd27
 <head>
     <meta charset="UTF-8">
     <title>CMPE285 Project</title>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Stock', 'Percentage'],
+          ['AAPL',     11],
+          ['ADBE',      2],
+          ['NSRGY',    7]
+        ]);
+
+        var options = {
+          title: 'How the money divide'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 </head>
+    
 <body>
     <div class="container-fluid">
         <div class="row">
@@ -44,6 +74,7 @@ $(document).ready(function() {
                         Submit
                     </button>
                 </form>
+        <div id="piechart" style="width: 900px; height: 500px;"></div>
 
             </div>
         </div>

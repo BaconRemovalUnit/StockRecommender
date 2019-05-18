@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBarColors);
+
+        function drawBarColors() {
+          var data = google.visualization.arrayToDataTable([
+            ['City', 'Current', '1 day prev', '2 day prev', '3 day prev', '4 day prev', '5 day prev'],
+            ['Stock1', 8175000, 8008000, 1526000, 1517000, 3792000, 3694000],
+            ['Stock2', 3792000, 3694000, 8175000, 8008000, 2099000, 1953000],
+            ['Stock3', 2695000, 2896000, 3792000, 3694000, 2099000, 1953000],
+            ['Stock4', 2099000, 1953000, 1526000, 1517000, 2695000, 2896000],
+            ['Stock5', 1526000, 1517000, 8175000, 8008000, 2099000, 1953000]
+          ]);
+
+          var options = {
+            title: '5 day history of the overall portfolio value',
+            chartArea: {width: '65%',height: '75%'},
+            colors: ['#FF0000', '#FFA500', '#FFFF00', "#ADFF2F", "#7FFFD4", "#7B68EE"],
+            hAxis: {
+              title: 'Price',
+              minValue: 0
+            },
+            vAxis: {
+              title: 'Stock'
+            }
+          };
+          var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+          chart.draw(data, options);
+        }
+    </script>
+</head>
+<body>
+    <div id="chart_div" style="width: 1000px; height: 750px;"></div>
+</body>
+</html>
+
+
+
+<!--
+           google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBarColors);
+
+        function drawBarColors() {
+          var data = google.visualization.arrayToDataTable([
+            ['City', 'Current', '1 day prev', '2 day prev', '3 day prev', '4 day prev', '5 day prev'],
+            ['Stock1', 8175000, 8008000, 1526000, 1517000, 3792000, 3694000],
+            ['Stock2', 3792000, 3694000, 8175000, 8008000, 2099000, 1953000],
+            ['Stock3', 2695000, 2896000, 3792000, 3694000, 2099000, 1953000],
+            ['Stock4', 2099000, 1953000, 1526000, 1517000, 2695000, 2896000],
+            ['Stock5', 1526000, 1517000, 8175000, 8008000, 2099000, 1953000]
+          ]);
+
+          var options = {
+            title: '5 day history of the overall portfolio value',
+            chartArea: {width: '50%'},
+            colors: ['#FF0000', '#FFA500', '#FFFF00', "#ADFF2F", "#7FFFD4", "#7B68EE"],
+            hAxis: {
+              title: 'Price',
+              minValue: 0
+            },
+            vAxis: {
+              title: 'Stock'
+            }
+          };
+          var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+          chart.draw(data, options);
+        }
+
+
+-->
