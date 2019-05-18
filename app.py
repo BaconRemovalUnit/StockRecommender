@@ -14,6 +14,13 @@ def index():
         print("user spending ${} with strat {}".format(input_dollar, strat))
 
         # TODO add return info about stock here
+        stocksMapping = {
+        "e" : ["APPL","ADBE","NSRGY"],
+        "g" : ["NFLX","FB","NVDA"], 
+        "i" : ["VTI","IXUS","ILTB"],
+        "q" : ["LOW","ROST","TJX"],
+        "v" : ["WMT","BAC","CLF"],
+        };
 
         # things to return to the html, it can be any type
         obj = {"money":input_dollar, "strat": strat}
