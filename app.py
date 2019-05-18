@@ -60,12 +60,13 @@ def index():
 
 
 
-            print(packet["history"])
+            #print(packet["history"])
         # things to return to the html, it can be any type
         obj = {"money":input_dollar, "strat": strat}
 
         # render index with obj
-        return render_template("index.html", obj=obj)
+        print("Object",hist)
+        return render_template("PortfolioChart.html", obj=hist)
 
 
-app.run(debug=True, port=80)
+app.run(debug=False)
