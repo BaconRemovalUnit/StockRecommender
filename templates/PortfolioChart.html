@@ -76,7 +76,11 @@
 
 </head>
 <body>
+    {% for buys,stats in buy_stats.items() %}
+    <p> Buying {{stats["count"]}} stocks of {{buys}} at the price of {{stats["price"]}}  </p>
+    {% endfor %}
     <div id="piechart" style="width: 800px; height: 500px;"></div>
+
     <div id="chart_div" style="width: 1000px; height: 750px;"></div>
 </body>
 </html>
