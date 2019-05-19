@@ -46,7 +46,6 @@ def index():
         hist_api_str = "https://www.worldtradingdata.com/api/v1/history?symbol={}&sort=newest&date_from={}&api_token={}"
         price_api_str = "https://www.worldtradingdata.com/api/v1/stock?symbol={}&api_token={}"
 
-
         n = 5
         split_stock_list =  [stocks[i * n:(i + 1) * n] for i in range((len(stocks) + n - 1) // n )]
         money_remain = input_dollar
@@ -91,8 +90,6 @@ def index():
             print(packet["history"])
             hist.append(packet)
 
-            #print(packet["history"])
-
         # things to return to the html, it can be any type
         obj = {"money":input_dollar, "strat": strat}
 
@@ -101,8 +98,4 @@ def index():
         print("Object",hist)
         return render_template("PortfolioChart.html", obj=hist, dist=distribution, buy_stats=buy_stats)
 
-        # return render_template("index.html", obj=hist, dist=distribution)
-
-
-
-app.run(debug=False)
+app.run(debug=False, port=80)
