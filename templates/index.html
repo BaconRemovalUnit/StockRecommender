@@ -2,7 +2,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ url_for('static',filename='css/main.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css">
+<link rel="stylesheet" href="{{ url_for('static',filename='css/font-awesome.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static',filename='css/animate.css') }}">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
  
@@ -29,31 +33,75 @@ $(document).ready(function() {
 
 </head>
     
-<body>
-    <div class="container-fluid">
+<body class="main-body"  style="background-image: url(../static/images/pexels-photo-315785.jpeg)">
+    <div class="container-fluid" style="padding-left : 10%; padding-bottom : 15%">
         <div class="row">
             <div class="col-md-12">
-                <h3>
-                    StockRecommender
-                </h3>
-                <form action="{{url_for('index')}}" role="form" method="post">
-                    <div class="form-group">
-                        <label for="InputDollar">
-                            Input amount($)
-                        </label>
-                        <input type="number" class="form-control" id="InputDollar" name="input_dollar" step="0.01"
-                               min="5000" value="5000"/>
-                        <input type="checkbox" name="e" value="e" class="cbox">Ethical Investing<br>
-                        <input type="checkbox" name="g" value="g" class="cbox">Growth Investing<br>
-                        <input type="checkbox" name="i" value="i" class="cbox">Index Investing<br>
-                        <input type="checkbox" name="q" value="q" class="cbox">Quality Investing<br>
-                        <input type="checkbox" name="v" value="v" class="cbox">Value Investing<br>
-                    </div>
-                    <button type="submit" class="btn btn-primary" id="bt_submit">
-                        Submit
-                    </button>
-                </form>
+                <br><br>
+                <div class="calculate-side" style="width : 85%">
+                    <h1 class='lead-title' style="text-align: center;">
+                        STOCK RECOMMENDER
+                    </h1>
+                    <form action="{{url_for('index')}}" role="form" method="post" class='calculate-side-form'>
 
+                         <div class="investment_choices_area clearfix">
+                            <label for="InputDollar">
+                                Input amount($)
+                            </label>
+                             <div class="md-form ">
+                                 <i class="fa fa-usd prefix grey-text"></i>
+                                 <input type="number" class="form-control" id="InputDollar" name="input_dollar" step="0.01"
+                                   min="5000" value="5000"/>
+                             </div>
+
+                             <div class="md-form pos-form">
+                                 <span>
+                                     <i class="fa fa-suitcase prefix grey-text"></i>
+                                    <label for="investment_choices_master">Select Investion Options</label><br><br>
+                                 </span>
+
+
+                                 <div class="investment_choices_area clearfix">
+
+                                   <label for="ic_1">
+                                         <img src="{{ url_for('static',filename='images/1.jpg') }}" alt="">
+                                         <span>Ethical Investing</span>
+                                        <input type="checkbox" value="e" id="ic_1" name="e" class="cbox">
+                                   </label>
+
+                                   <label for="ic_2">
+                                        <img src="{{ url_for('static',filename='images/2.jpg') }}" alt="">
+                                         <span>Growth Investing</span>
+                                         <input type="checkbox" value="g" id="ic_2" name="g" class="form-control cbox">
+                                   </label>
+
+
+                                   <label for="ic_3">
+                                         <img src="{{ url_for('static',filename='images/3.png') }}" alt="">
+                                         <span>Index Investing</span>
+                                         <input type="checkbox" value="i" id="ic_3" name="i" class="form-control cbox">
+                                   </label>
+
+                                   <label for="ic_4">
+                                         <img src="{{ url_for('static',filename='images/4.png') }}" alt="">
+                                         <span>Quality Investing</span>
+                                         <input type="checkbox" value="q" id="ic_4" name="q" class="form-control cbox">
+                                   </label>
+                                   <label for="ic_5">
+                                         <img src="{{ url_for('static',filename='images/5.png') }}" alt="">
+                                         <span>Value Investing</span>
+                                         <input type="checkbox" value="v" id="ic_5" name="v" class="form-control cbox">
+                                   </label>
+                                 </div>
+
+                             </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="bt_submit">
+                            Submit
+                        </button>
+                    </form>
+                </div>
 
             </div>
         </div>

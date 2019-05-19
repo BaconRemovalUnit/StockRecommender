@@ -1,0 +1,89 @@
+
+body { 
+    margin-top:30px;
+    background-image: url(../static/images/pexels-photo-315785.jpeg);
+
+}
+.container { position:relative; z-index:4;  }
+
+.lead-title{
+
+background-color: black; 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f2f2f2',GradientType=0 ); /* IE6-9 */
+
+top: -120px;
+
+left;0margin:0padding:5px 10pxborder-
+
+radius:4px;
+
+left: 0;
+
+padding: 15px 28px;
+
+border-radius: 4px;
+
+text-transform: uppercase;
+
+font-size: 17px;
+
+color: white;
+
+font-weight: 500;
+
+} 
+
+.h-inner-wrap {background:#fff;padding: 30px;/* width:400px; */border-radius:4px;box-shadow:0px 0px 100px rgba(0,0,0,0.1);position:absolute;right:0;top: -50px;}
+
+
+.calculate-side {
+    /* width:50%; */
+    /* float:right; */
+    padding: 0px;
+    box-shadow: 0px 0px 100px rgba(0,0,0,0.1);
+    background: #fff;
+    margin-left: 40px;
+    border-radius: 4px;
+    margin-top: 50px;
+}
+
+.calculate-side form { padding:50px; }
+.calculate-side i.fa {padding:0;margin:0;width: 30px;top: 18px;left: 3px;font-size: 27px;text-align: right;}
+
+.pos-form > label  {position:relative;top: auto;left: auto;display: block;padding-top: 21px;}
+
+.md-form .investment_choices_area input {position:absolute;/* visibility: hidden; */opacity: 0;}
+
+.md-form .investment_choices_area input:checked  {opacity:1;box-shadow:none;outline:none;appearance:none;-webkit-appearance:none;margin: 0 auto;left: 50%;width: 100px;bottom: -1px;margin-left: -50px;border-color: #33b5e5;}
+
+
+.h-inner-wrap h3 { font-size:24px; margin-bottom:25px; font-weight:500; }
+.h-inner-wrap ul { margin:0; padding:0; list-style:none; }
+.h-inner-wrap ul li {margin-bottom: 30px;font-weight:400;color: #444;font-size: 14px;font-style: italic;}
+.h-inner-wrap ul li strong {float:left;width:50px;height:50px;line-height:50px;border-radius:100%;border: 1px dashed #b4b4b4;text-align:center;color: #111;margin-right: 25px;}
+
+.investment_choices_area  {margin-top: 0px;padding: 20px 0;}
+.investment_choices_area img {display:block;margin:0 auto 10px auto;width: 48px;height: 48px;}
+.md-form .investment_choices_area label {padding: 20px 10px;transition:0.3s ease all;position:relative;top: auto;left: auto;float: left;width: calc(20% - 20px);margin: 0px 10px;color: #111;text-transform:uppercase;font-size: 11px;text-align:center;font-weight: 500;border-radius: 4px;cursor: pointer;}
+.md-form .investment_choices_area label:hover {
+    
+    border: 1px solid black;
+}
+
+.page-content {    
+    box-shadow: 0px 0px 100px rgba(0,0,0,0.1);
+    background: #fff;
+    margin-top: -40px;
+    border-radius: 4px;  
+    width:100%;
+    }
+.content { padding:30px; }
+
+input[type=checkbox] + label {
+  color: #ccc;
+  font-style: italic;
+}
+input[type=checkbox]:checked + label {
+  color: #f00;
+  font-style: normal;
+}
