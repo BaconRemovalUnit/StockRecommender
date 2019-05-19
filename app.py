@@ -37,6 +37,7 @@ def index():
         stocks = []
         hist = []
         distribution = {}
+        buy_stats = {}
 
         for i in strat:
             stocks += stocksMapping[i]
@@ -70,12 +71,16 @@ def index():
                 investment = num_of_stock * stock_price
                 money_remain -= investment
                 distribution[s['symbol']] = investment
+                buy_stats[s['symbol']] = {}
+                buy_stats[s['symbol']]["price"] = stock_price
+                buy_stats[s['symbol']]["count"] = num_of_stock
+
         distribution["money remain"] = money_remain
 
         print(distribution)
 
         for stock in stocks:
-            request_str = hist_api_str.format(stock,seven_days_ago.date(),api_token)
+            request_str = hist_api_str.format(stock, seven_days_ago.date(), api_token)
             try:
                 r = requests.get(request_str)
             except requests.exceptions.RequestException as e:
@@ -94,7 +99,7 @@ def index():
         # render index with obj
 
         print("Object",hist)
-        return render_template("PortfolioChart.html", obj=hist, dist= distribution)
+        return render_template("PortfolioChart.html", obj=hist, dist=distribution, buy_stats=buy_stats)
 
         # return render_template("index.html", obj=hist, dist=distribution)
 
