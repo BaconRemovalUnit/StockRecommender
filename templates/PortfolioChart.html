@@ -2,28 +2,42 @@
 <html lang="en">
 <head>
 
-    <h1>Below is the graph</h1>
+    <h1>Money Division & Overall Portfolio Graph</h1>
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
 
     google.charts.load('current', {packages: ['corechart', 'bar']});
-    google.charts.setOnLoadCallback(drawBarColors());
+    google.charts.setOnLoadCallback(drawBarColors);
 
 
-    function drawBarColors(values) {
+    function drawBarColors() {
         var data=[]
-        var initial=['City', 'Current', '1 day prev', '2 day prev', '3 day prev', '4 day prev']
-        data.push[initial]
+
+        var initial=[]
         {% for stock in obj %}
-            var subData=[]
-            subData.push["{{stock.name}}"]
             {% for date,val in stock.history.items() %}
-                subData.push[val.close]
+                initial.push("{{date}}")
             {% endfor %}
-               data.push[subData]
         {% endfor %}
 
-          var options = {
+
+        initial = initial.filter(function(item, pos) {
+            return initial.indexOf(item) == pos;
+        })
+        initial.unshift("Stock")
+        data.push(initial)
+
+        {% for stock in obj %}
+            var subData=[]
+            subData.push("{{stock.name}}")
+            {% for date,val in stock.history.items() %}
+                subData.push({{val.close}})
+            {% endfor %}
+               data.push(subData)
+        {% endfor %}
+
+        var options = {
             title: '5 day history of the overall portfolio value',
             chartArea: {width: '65%',height: '75%'},
             colors: ['#FF0000', '#FFA500', '#FFFF00', "#ADFF2F", "#7FFFD4", "#7B68EE"],
@@ -34,12 +48,11 @@
             vAxis: {
               title: 'Stock'
             }
-          };
-          var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-          chart.draw(data, options);
+        };
+            var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+            chart.draw(google.visualization.arrayToDataTable(data), options);
         }
 
-       // drawBarColors({{obj | safe}})
     </script>
 
     <script type="text/javascript">
@@ -53,7 +66,7 @@
             {% endfor %}
         ]);
             var options = {
-                title: 'How the money divide by strategy you selected'
+                title: 'Pie chart showing how the money is divided based on the strategy selected'
             };
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
             chart.draw(data, options);
