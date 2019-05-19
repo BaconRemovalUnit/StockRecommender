@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from datetime import datetime, timedelta
 import requests,math
+import json
 app = Flask(__name__)
 
 
@@ -96,7 +97,7 @@ def index():
         print("Object",hist)
         return render_template("PortfolioChart.html", obj=hist)
 
-        return render_template("index.html", obj=hist, dist=distribution)
+        #return render_template("index.html", obj=hist, dist=distribution)
 
 
 
