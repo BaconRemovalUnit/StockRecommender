@@ -42,7 +42,7 @@ def index():
         for i in strat:
             stocks += stocksMapping[i]
 
-        api_token = "b7676g5wQjdv1EdR9nEnrHLoMrbqNTafYIvomuE9Hn3InTSsYwrDTLbzBdDf"
+        api_token = "w180z5RzEP4fyygkQD1cjPYZPVwLTH4QE2AWgznlBWiNzJMJ3fJ6HtsBB8BL"
         hist_api_str = "https://www.worldtradingdata.com/api/v1/history?symbol={}&sort=newest&date_from={}&api_token={}"
         price_api_str = "https://www.worldtradingdata.com/api/v1/stock?symbol={}&api_token={}"
 
