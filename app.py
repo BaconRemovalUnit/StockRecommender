@@ -1,9 +1,7 @@
 from flask import Flask, render_template, request
 from datetime import datetime, timedelta
 import requests,math
-import json
 app = Flask(__name__)
-
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -28,7 +26,7 @@ def index():
 
         # TODO add return info about stock here
         stocksMapping = {
-            "e" : ["APPL","ADBE","NSRGY"],
+            "e" : ["AAPL","ADBE","NSRGY"],
             "g" : ["NFLX","FB","NVDA"],
             "i" : ["VTI","IXUS","ILTB"],
             "q" : ["LOW","ROST","TJX"],
@@ -47,25 +45,31 @@ def index():
         hist_api_str = "https://www.worldtradingdata.com/api/v1/history?symbol={}&sort=newest&date_from={}&api_token={}"
         price_api_str = "https://www.worldtradingdata.com/api/v1/stock?symbol={}&api_token={}"
 
-        stocks_str = ",".join(stocks)
-        request_str = price_api_str.format(stocks_str,api_token)
-        try:
-            r = requests.get(request_str)
-        except requests.exceptions.RequestException as e:
-            print("Network error! Please the run program with proper Internet connecetion.")
-        pass
 
-        pakcet = r.json()['data']
-
+        n = 5
+        split_stock_list =  [stocks[i * n:(i + 1) * n] for i in range((len(stocks) + n - 1) // n )]
         money_remain = input_dollar
         max_per_stock_allow = input_dollar / len(stocks)
-        for s in pakcet:
-            stock_price = float(s['price'])
-            print(s['symbol'],s['price'])
-            num_of_stock = math.floor(max_per_stock_allow / stock_price)
-            investment = num_of_stock * stock_price
-            money_remain -= investment
-            distribution[s['symbol']] = investment
+
+        # get price with 5 stocks per call
+        for i in split_stock_list:
+            stocks_str = ",".join(i)
+            request_str = price_api_str.format(stocks_str,api_token)
+            try:
+                r = requests.get(request_str)
+            except requests.exceptions.RequestException as e:
+                print("Network error! Please the run program with proper Internet connecetion.")
+            pass
+
+            pakcet = r.json()['data']
+
+            for s in pakcet:
+                stock_price = float(s['price'])
+                print(s['symbol'],s['price'])
+                num_of_stock = math.floor(max_per_stock_allow / stock_price)
+                investment = num_of_stock * stock_price
+                money_remain -= investment
+                distribution[s['symbol']] = investment
         distribution["money remain"] = money_remain
 
         print(distribution)
@@ -79,6 +83,7 @@ def index():
             pass
 
             packet = r.json()
+            print(packet["history"])
             hist.append(packet)
 
             #print(packet["history"])
@@ -91,12 +96,8 @@ def index():
         print("Object",hist)
         return render_template("PortfolioChart.html", obj=hist, dist= distribution)
 
-
-        #return render_template("index.html", obj=hist, dist=distribution)
-
         # return render_template("index.html", obj=hist, dist=distribution)
 
 
 
-
-app.run(debug=False)
+app.run(debug=False,port=80)
