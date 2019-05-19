@@ -80,12 +80,6 @@ def index():
             packet = r.json()
             hist.append(packet)
 
-
-
-
-
-
-
             #print(packet["history"])
 
         # things to return to the html, it can be any type
@@ -94,9 +88,9 @@ def index():
         # render index with obj
 
         print("Object",hist)
-        return render_template("PortfolioChart.html", obj=hist)
+        return render_template("PortfolioChart.html", obj=hist, dist= distribution)
 
-        return render_template("index.html", obj=hist, dist=distribution)
+        # return render_template("index.html", obj=hist, dist=distribution)
 
 
 
